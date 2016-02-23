@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" id="cordova-plugin-trusted-device" version="1.0.0">
+    <name>Trusted Device</name>
+    <author>Jordi Murgo and others.</author>
+    <description>Cordova Plugin for detecting if the device running the app is jailbroken or rooted.</description>
+    <keywords>cordova, trust, trusted, jailbreak, jailbroken, cydia, detection, detector, root, rooted</keywords>
+    <license>MIT</license>
+    <engines>
+        <engine name="cordova" version=">=5.0.0" />
+    </engines>
+    <js-module src="www/inc/trustedDevice/js/trustedDevice.js" name="trustedDevice">
+        <clobbers target="trustedDevice" />
+    </js-module>
+    <platform name="android">
+        <config-file target="config.xml" parent="/*">
+            <feature name="trustedDevice">
+              <param name="android-package" value="com.gft.cordova.plugins.trustdevice.TrustedDevicePlugin" />
+            </feature>
+        </config-file>
+        <source-file src="src/android/com/gft/cordova/plugins/trustdevice/TrustedDevicePlugin.java" 
+            target-dir="src/com/gft/cordova/plugins/trustdevice"/>
+    </platform>
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="trustedDevice">
+                <param name="ios-package" value="TrustedDevicePlugin" />
+            </feature>
+        </config-file>
+        <header-file src="src/ios/TrustedDevicePlugin.h" />
+        <source-file src="src/ios/TrustedDevicePlugin.m" />
+    </platform>
+</plugin>
