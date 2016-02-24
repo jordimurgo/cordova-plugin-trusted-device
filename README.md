@@ -5,6 +5,7 @@
     * https://github.com/jimmyliao/cordova-plugin-device-detection
     * https://github.com/trykovyura/cordova-plugin-jailbreak-detection
     * https://github.com/lcaprini/it.lcaprini.cordova.plugins.unlocksdetector
+    * https://github.com/Appverse/appverse-mobile/blob/master/appverse-platform-android/src/com/gft/unity/android/AndroidSecurity.java
 
 ## Install
 
@@ -18,7 +19,7 @@ cordova plugin add https://appverse.gftlabs.com/git/scm/devltools/cordova-plugin
 
 ## isTrusted
 ```js
-window.plugins.trustedDevice.isTrusted(onSuccess, onFail);
+trustedDevice.isTrusted(onSuccess, onFail);
 ```
 
 - => `successCallback` is called with `true` if the device is is Trusted (not Rooted or Jailbroken), otherwise `false`

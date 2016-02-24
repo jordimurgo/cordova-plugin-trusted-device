@@ -34,44 +34,62 @@
 
 #if !(TARGET_IPHONE_SIMULATOR)
 
+    // Cydia APP
     if ([[NSFileManager defaultManager] fileExistsAtPath:@"/Applications/Cydia.app"])
     {
         return YES;
     }
-    else if ([[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/MobileSubstrate.dylib"])
-    {
-        return YES;
-    }
-    else if ([[NSFileManager defaultManager] fileExistsAtPath:@"/bin/bash"])
-    {
-        return YES;
-    }
-    else if ([[NSFileManager defaultManager] fileExistsAtPath:@"/usr/sbin/sshd"])
-    {
-        return YES;
-    }
+
+    // APT cmdline tools
     else if ([[NSFileManager defaultManager] fileExistsAtPath:@"/etc/apt"])
     {
         return YES;
     }
 
-    NSError *error;
-    NSString *testWriteText = @"Jailbreak test";
-    NSString *testWritePath = @"/private/jailbreaktest.txt";
-
-    [testWriteText writeToFile:testWritePath atomically:YES encoding:NSUTF8StringEncoding error:&error];
-
-    if (error == nil)
+    // Cydia 1.1.15 and earlier apps dir
+    if ([[NSFileManager defaultManager] fileExistsAtPath:@"/private/var/stash"])
     {
-        [[NSFileManager defaultManager] removeItemAtPath:testWritePath error:nil];
         return YES;
     }
-    else
+
+    // Cydia >=1.1.16 apps dir
+    if ([[NSFileManager defaultManager] fileExistsAtPath:@"/private/var/db/stash"])
     {
-        [[NSFileManager defaultManager] removeItemAtPath:testWritePath error:nil];
+        return YES;
     }
 
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"cydia://package/com.example.package"]])
+    // Cydia Substrate (MobileSubstrate) framework to patch apps
+    if ([[NSFileManager defaultManager] fileExistsAtPath:@"/Library/MobileSubstrate/MobileSubstrate.dylib"])
+    {
+        return YES;
+    }
+
+    // Sell? Busybox installed
+    if ([[NSFileManager defaultManager] fileExistsAtPath:@"/bin/bash"])
+    {
+        return YES;
+    }
+
+    // SSHd
+    if ([[NSFileManager defaultManager] fileExistsAtPath:@"/usr/sbin/sshd"])
+    {
+        return YES;
+    }
+
+    // Snoop-it security tracer
+    if ([[NSFileManager defaultManager] fileExistsAtPath:@"/Applications/Snoop-it Config.app"])
+    {
+        return YES;
+    }
+
+    // is /system Writable?
+    if ([[NSFileManager defaultManager] isWritableFileAtPath:@"/system"])
+    {
+        return YES;
+    }
+
+    // is /private Writable?
+    if ([[NSFileManager defaultManager] isWritableFileAtPath:@"/private"])
     {
         return YES;
     }
