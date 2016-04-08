@@ -14,11 +14,11 @@
     <platform name="android">
         <config-file target="config.xml" parent="/*">
             <feature name="trustedDevice">
-              <param name="android-package" value="com.gft.cordova.plugins.trustdevice.TrustedDevicePlugin" />
+              <param name="android-package" value="org.appverse.cordova.plugins.trustdevice.TrustedDevicePlugin" />
             </feature>
         </config-file>
-        <source-file src="src/android/com/gft/cordova/plugins/trustdevice/TrustedDevicePlugin.java" 
-            target-dir="src/com/gft/cordova/plugins/trustdevice"/>
+        <source-file src="src/android/org/appverse/cordova/plugins/trustdevice/TrustedDevicePlugin.java"
+            target-dir="src/org/appverse/cordova/plugins/trustdevice"/>
     </platform>
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
